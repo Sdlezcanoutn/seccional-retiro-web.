@@ -1,5 +1,5 @@
 /* ========================================
-   1. COLORES INSTITUCIONALES
+   1. VARIABLES GENERALES
 ======================================== */
 
 :root {
@@ -11,7 +11,13 @@
     --fondo-suave: #f5f8f5;
     --fondo-pagina: #f8faf8;
     --borde-suave: #e2e9e2;
+    --verde-hover: #234d2e;
+
+    /* Anchos máximos compartidos */
+    --ancho-contenido: 420px;
+    --ancho-amplio: 900px;
 }
+
 
 /* ========================================
    2. ESTILOS GENERALES
@@ -55,13 +61,21 @@ main p {
     display: none;
 }
 
+/* Apariencia compartida de los recuadros informativos */
+.newsletter-destacado,
+.documentacion-tramite {
+    background-color: var(--blanco);
+    border: 1px solid var(--borde-suave);
+    border-radius: 16px;
+}
+
 /* ========================================
    3. NAVEGACIÓN PRINCIPAL
 ======================================== */
 
 /* Contenedor general del menú */
 #menu-sitio {
-    max-width: 900px;
+    max-width: var(--ancho-amplio);
     margin: 0 auto 14px;
 }
 
@@ -162,7 +176,7 @@ main p {
     isolation: isolate;
 
     width: 100%;
-    max-width: 900px;
+    max-width: var(--ancho-amplio);
     height: auto;
     aspect-ratio: 900 / 325;
     margin: 0 auto;
@@ -253,7 +267,7 @@ main p {
 
 /* Distribución de los catálogos de las páginas internas */
 .catalogo-tarjetas {
-    max-width: 420px;
+    max-width: var(--ancho-contenido);
     gap: 12px;
     margin: 28px auto;
 }
@@ -314,19 +328,21 @@ main p {
     font-size: 24px;
 }
 
-/* Íconos SVG de Lucide en los catálogos */
-.tarjeta-catalogo svg {
+/* Apariencia compartida de los íconos circulares */
+.tarjeta-catalogo svg,
+.icono-tarjeta {
     width: 44px;
     height: 44px;
     flex-shrink: 0;
-
-    padding: 10px;
-    margin-bottom: 8px;
-
     border-radius: 50%;
     background-color: var(--fondo-suave);
     color: var(--verde);
+}
 
+/* Ajustes específicos de los íconos de catálogos */
+.tarjeta-catalogo svg {
+    padding: 10px;
+    margin-bottom: 8px;
     stroke-width: 2;
 }
 
@@ -396,7 +412,7 @@ main p {
 /* Distribución de las tarjetas de la página principal */
 .secciones-principales {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    max-width: 900px;
+    max-width: var(--ancho-amplio);
     gap: 16px;
     margin: 20px auto 0;
 }
@@ -436,23 +452,17 @@ main p {
     background-image: url("assets/img/newsletters.jpg");
 }
 
-/* Distribución de los íconos en las tarjetas del inicio */
+/* Distribución del contenido de las tarjetas del inicio */
 .secciones-principales .tarjeta {
     flex-direction: column;
     gap: 10px;
 }
 
-/* Círculo decorativo de cada ícono */
+/* Distribución de los íconos en las tarjetas del inicio */
 .icono-tarjeta {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background-color: var(--fondo-suave);
-    color: var(--verde);
 }
 
 /* Tamaño de los íconos Lucide */
@@ -616,7 +626,7 @@ main p {
 }
 
 .buscador-formularios {
-    max-width: 420px;
+    max-width: var(--ancho-contenido);
     margin: 28px auto 0;
 }
 
@@ -648,11 +658,6 @@ main p {
     max-width: 700px;
     margin: 28px auto;
     padding: 18px;
-
-    background-color: var(--blanco);
-    border: 1px solid var(--borde-suave);
-    border-radius: 16px;
-
     box-shadow: 0 3px 12px rgba(46, 100, 59, 0.08);
 }
 
@@ -757,15 +762,12 @@ main p {
 /* Ancho y separación de los bloques de trámite */
 .documentacion-tramite,
 .formulario-tramite {
-    max-width: 420px;
+    max-width: var(--ancho-contenido);
     margin: 28px auto;
 }
 
 .documentacion-tramite {
     padding: 20px;
-    background-color: var(--blanco);
-    border: 1px solid var(--borde-suave);
-    border-radius: 16px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
     text-align: left;
 }
@@ -802,7 +804,7 @@ main p {
 
 /* Cambio de color al pasar el mouse sobre el botón */
 .formulario-tramite a:hover {
-    background-color: #234d2e;
+    background-color: var(--verde-hover);
 }
 
 /* ========================================
@@ -858,11 +860,17 @@ main p {
 /* Distribución de catálogos en computadora */
 @media (min-width: 601px) {
 
+    /* Ancho y separación compartidos */
+    .catalogo-beneficios,
+    .catalogo-formularios,
+    .catalogo-newsletters {
+        max-width: var(--ancho-amplio);
+        gap: 18px;
+    }
+
     /* Beneficios: tres columnas */
     .catalogo-beneficios {
-        max-width: 900px;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
     }
 
     /* Servicio de sepelio ocupa toda la última fila */
@@ -870,18 +878,10 @@ main p {
         grid-column: 1 / -1;
     }
 
-    /* Formularios: cuatro columnas */
-    .catalogo-formularios {
-        max-width: 900px;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    /* Newsletters: cuatro columnas en computadora */
+    /* Formularios y Newsletters: cuatro columnas */
+    .catalogo-formularios,
     .catalogo-newsletters {
-        max-width: 900px;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 18px;
     }
 }
 
