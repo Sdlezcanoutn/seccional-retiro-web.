@@ -21,7 +21,10 @@
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
 
-<body>
+<body class="pagina-inicio">
+
+    <!-- Menú de navegación compartido -->
+    <div id="menu-sitio"></div>
 
     <!-- Encabezado: logos institucionales -->
     <header class="encabezado">
@@ -33,7 +36,7 @@
     <!-- Presentación principal de la página -->
     <main>
         <h1>Seccional Retiro</h1>
-        <p>Información para nuestras <br> compañeras y compañeros.</p>
+        <p>Información para nuestras<br class="salto-mobile"> compañeras y compañeros.</p>
 
         <!-- Accesos principales de la página -->
         <section class="secciones-principales">
@@ -98,6 +101,8 @@
             }
         });
     </script>
+
+    <script src="menu.js" defer></script>
 
 </body>
 

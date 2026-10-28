@@ -19,6 +19,8 @@
 </head>
 
 <body>
+    <!-- Menú de navegación compartido -->
+    <div id="menu-sitio"></div>
 
     <main>
         <!-- Presentación de la sección -->
@@ -30,9 +32,13 @@
 
             <!-- Afiliación a Unión Ferroviaria -->
             <a href="afiliacion.html" class="tarjeta-catalogo">
+
+                <img src="assets/img/afiliacion.png" alt="Persona escribiendo en un cuaderno" 
+                class="imagen-catalogo imagen-afiliacion">
+                
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-user-round-plus">
+                    class="lucide lucide-user-round-plus icono-superpuesto">
                     <path d="M2 21a8 8 0 0 1 13.292-6" />
                     <circle cx="10" cy="8" r="5" />
                     <path d="M19 16v6" />
@@ -44,12 +50,16 @@
 
             <!-- Empadronamiento a Asociación Mutual Unión Ferroviaria -->
             <a href="empadronamiento.html" class="tarjeta-catalogo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-                class="lucide lucide-clipboard-check">
-                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                <path d="m9 14 2 2 4-4"/>
+
+                <img src="assets/img/empadronamiento.png" alt="Persona sosteniendo un portapapeles"
+                    class="imagen-catalogo imagen-afiliacion">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-clipboard-check icono-superpuesto">
+                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                    <path d="m9 14 2 2 4-4" />
                 </svg>
                 <span class="nombre-beneficio">Empadronamiento</span>
                 <small>Asociación Mutual <br> Unión Ferroviaria</small>
@@ -63,12 +73,12 @@
         </p>
     </main>
 
-
     <!-- Pie de página -->
     <footer class="pie-pagina">
         <p>© Seccional Retiro</p>
     </footer>
 
+    <script src="menu.js" defer></script>
 
 </body>
 

@@ -50,8 +50,102 @@ main p {
     line-height: 1.5;
 }
 
+/* Salto de línea exclusivo para celulares */
+.salto-mobile {
+    display: none;
+}
+
 /* ========================================
-   3. ENCABEZADO Y LOGOS
+   3. NAVEGACIÓN PRINCIPAL
+======================================== */
+
+/* Contenedor general del menú */
+#menu-sitio {
+    max-width: 900px;
+    margin: 0 auto 14px;
+}
+
+/* Distribución general de la navegación */
+.navegacion-sitio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 32px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Menú de computadora: todas las opciones visibles */
+.menu-escritorio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Apariencia de los enlaces */
+.navegacion-sitio a {
+    color: var(--carbon);
+    text-decoration: none;
+}
+
+/* Resaltar enlaces al pasar el mouse o estar en la página */
+.navegacion-sitio a:hover,
+.navegacion-sitio a[aria-current="page"] {
+    color: var(--verde);
+}
+
+/* Contenedor del menú desplegable de celular */
+.menu-movil {
+    position: relative;
+    display: none;
+}
+
+/* Botón de hamburguesa */
+.menu-movil summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.menu-movil summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Opciones desplegables del celular */
+.menu-opciones {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    min-width: 225px;
+    padding: 6px;
+
+    background: var(--blanco);
+    border: 1px solid var(--borde-suave);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+}
+
+/* Enlaces dentro del menú desplegable */
+.menu-opciones a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.menu-opciones a:hover {
+    background: var(--fondo-suave);
+}
+
+/* ========================================
+   4. ENCABEZADO Y LOGOS
 ======================================== */
 
 /* Distribución de los logos institucionales */
@@ -60,6 +154,61 @@ main p {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+/* Encabezado visual de la página de inicio */
+.pagina-inicio .encabezado {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    aspect-ratio: 900 / 325;
+    margin: 0 auto;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+
+    padding: 25px 0 0 55px;
+
+    background-image: url("assets/img/seccional-retiro.jpeg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Filtro suave sobre la fotografía */
+.pagina-inicio .encabezado::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-color: rgba(25, 65, 45, 0.12);
+
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ondas decorativas del encabezado */
+.pagina-inicio .encabezado::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 38%;
+    z-index: 0;
+    pointer-events: none;
+
+    background-image: url("assets/img/ondas-encabezado.svg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 100%;
 }
 
 /* Apariencia compartida de los logos */
@@ -79,8 +228,20 @@ main p {
     height: 100px;
 }
 
+/* Logos más grandes únicamente en la portada */
+.pagina-inicio .encabezado img:first-child,
+.pagina-inicio .encabezado img:last-child {
+    width: 135px;
+    height: 135px;
+}
+
+.pagina-inicio .encabezado img {
+    position: relative;
+    z-index: 1;
+}
+
 /* ========================================
-   4. TARJETAS DE NAVEGACIÓN
+   5. TARJETAS Y CATÁLOGOS
 ======================================== */
 
 /* Cuadrículas utilizadas en el inicio y en los catálogos */
@@ -88,17 +249,11 @@ main p {
 .catalogo-tarjetas {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 420px;
 }
 
-/* Distribución de las tarjetas de la página principal */
-.secciones-principales {
-    gap: 16px;
-    margin: 32px auto 0;
-}
-
-/* Distribución de las tarjetas de beneficios y trámites */
+/* Distribución de los catálogos de las páginas internas */
 .catalogo-tarjetas {
+    max-width: 420px;
     gap: 12px;
     margin: 28px auto;
 }
@@ -129,9 +284,156 @@ main p {
         transform 0.2s ease;
 }
 
+/* Tarjetas de beneficios y selección de trámites */
+.tarjeta-catalogo {
+    flex-direction: column;
+    height: 110px;
+    font-size: 14px;
+}
+
+/* Altura adaptable de los catálogos especiales */
+.catalogo-afiliacion .tarjeta-catalogo,
+.catalogo-turismo .tarjeta-catalogo,
+.catalogo-formularios .tarjeta-catalogo {
+    height: auto;
+}
+
+/* Altura mínima de las tarjetas de Turismo y Formularios */
+.catalogo-turismo .tarjeta-catalogo,
+.catalogo-formularios .tarjeta-catalogo {
+    min-height: 135px;
+}
+
+/* Tarjetas que ocupan las dos columnas */
+.tarjeta-ancha {
+    grid-column: 1 / -1;
+}
+
+/* Íconos representados mediante span */
+.tarjeta-catalogo span {
+    font-size: 24px;
+}
+
+/* Íconos SVG de Lucide en los catálogos */
+.tarjeta-catalogo svg {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    padding: 10px;
+    margin-bottom: 8px;
+
+    border-radius: 50%;
+    background-color: var(--fondo-suave);
+    color: var(--verde);
+
+    stroke-width: 2;
+}
+
+/* Íconos superpuestos sobre fotografías */
+.icono-superpuesto {
+    position: relative;
+    z-index: 1;
+    margin-top: -32px;
+    margin-bottom: 4px;
+    background-color: var(--fondo-suave);
+    border: 4px solid var(--blanco);
+    width: 52px;
+    height: 52px;
+    padding: 10px;
+}
+
+/* Nombre de la institución debajo de cada trámite */
+.tarjeta-catalogo small {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 2px;
+}
+
+/* Espacio uniforme para los nombres de los beneficios */
+.tarjeta-catalogo .nombre-beneficio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    font-size: 14px;
+}
+
+/* Fotografías compartidas de los catálogos */
+.imagen-catalogo {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Efecto al pasar el mouse sobre las tarjetas */
+.tarjeta:hover,
+.tarjeta-catalogo:hover {
+    box-shadow: 0 6px 18px rgba(46, 100, 59, 0.14);
+    transform: translateY(-3px);
+}
+
+/* Efecto de fondo para las tarjetas de los catálogos */
+.tarjeta-catalogo:hover {
+    background-color: var(--fondo-suave);
+}
+
+/* ========================================
+   6. PÁGINA DE INICIO
+======================================== */
+
+/* Espaciado del título y subtítulo de la portada */
+.pagina-inicio h1 {
+    margin: 18px 0 4px;
+}
+
+.pagina-inicio main>p {
+    margin: 0;
+}
+
+/* Distribución de las tarjetas de la página principal */
+.secciones-principales {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 900px;
+    gap: 16px;
+    margin: 20px auto 0;
+}
+
 /* Tarjetas de acceso de la página principal */
 .tarjeta {
-    min-height: 115px;
+    min-height: 155px;
+    background-color: var(--verde);
+    color: var(--blanco);
+    border: none;
+}
+
+/* Fotografías de las cuatro tarjetas centrales */
+.secciones-principales .tarjeta:not(.tarjeta-ancha) {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Beneficios */
+.secciones-principales .tarjeta[href="beneficios.html"] {
+    background-image: url("assets/img/beneficios.png");
+}
+
+/* Turismo */
+.secciones-principales .tarjeta[href="turismo.html"] {
+    background-image: url("assets/img/turismo.jpg");
+}
+
+/* Formularios */
+.secciones-principales .tarjeta[href="formularios.html"] {
+    background-image: url("assets/img/formularios.jpg");
+}
+
+/* Newsletters */
+.secciones-principales .tarjeta[href="newsletters.html"] {
+    background-image: url("assets/img/newsletters.jpg");
 }
 
 /* Distribución de los íconos en las tarjetas del inicio */
@@ -166,173 +468,65 @@ main p {
     height: 18px;
     flex-shrink: 0;
     margin-left: 0;
-    color: var(--verde);
+    color: var(--blanco);
 }
 
-/* Distribución equilibrada de las tarjetas anchas */
+/* Distribucion y Fondo degradado de las tarjetas anchas */
 .secciones-principales .tarjeta-ancha {
     display: grid;
     grid-template-columns: 44px minmax(0, 1fr) 18px;
     align-items: center;
     gap: 8px;
     padding: 12px 16px;
-}
-
-/* Tarjetas de beneficios y selección de trámites */
-.tarjeta-catalogo {
-    flex-direction: column;
-    height: 110px;
-    font-size: 14px;
-}
-
-/* Altura adaptable de los catálogos especiales */
-.catalogo-afiliacion .tarjeta-catalogo,
-.catalogo-turismo .tarjeta-catalogo,
-.catalogo-formularios .tarjeta-catalogo {
-    height: auto;
-}
-
-/* Altura y separación compartidas */
-.catalogo-turismo .tarjeta-catalogo,
-.catalogo-formularios .tarjeta-catalogo {
-    min-height: 135px;
-    gap: 4px;
-}
-
-/* Tarjetas que ocupan las dos columnas */
-.tarjeta-ancha {
-    grid-column: 1 / -1;
-}
-
-/* Altura de las tarjetas anchas del inicio */
-.secciones-principales .tarjeta-ancha {
     min-height: 60px;
+
+    background:
+        linear-gradient(160deg,
+            transparent 65%,
+            rgba(255, 255, 255, 0.07) 65.5%,
+            transparent 66%,
+            transparent 73%,
+            rgba(255, 255, 255, 0.05) 73.5%,
+            transparent 74%),
+        linear-gradient(110deg,
+            var(--verde) 0%,
+            #367849 55%,
+            #234d2e 100%);
 }
 
-/* Íconos representados mediante span */
-.tarjeta-catalogo span {
-    font-size: 24px;
-}
+/* ========================================
+   7. AFILIACIÓN Y EMPADRONAMIENTO
+======================================== */
 
-/* Íconos SVG de Lucide en los catálogos */
-.tarjeta-catalogo svg {
-    width: 44px;
-    height: 44px;
+/* Fotografías de Afiliación y Empadronamiento */
+.catalogo-afiliacion .imagen-afiliacion {
+    height: 150px;
     flex-shrink: 0;
+}
 
+/* Ancho del catálogo de Afiliación y Empadronamiento */
+.catalogo-afiliacion {
+    max-width: 700px;
+    gap: 18px;
+}
+
+/* Tarjetas de Afiliación y Empadronamiento */
+.catalogo-afiliacion .tarjeta-catalogo {
+    justify-content: flex-start;
+    min-height: 0;
+    gap: 2px;
     padding: 10px;
-    margin-bottom: 8px;
-
-    border-radius: 50%;
-    background-color: var(--fondo-suave);
-    color: var(--verde);
-
-    stroke-width: 2;
 }
 
-/* Nombre de la institución debajo de cada trámite */
-.tarjeta-catalogo small {
-    font-size: 12px;
-    line-height: 14px;
-    margin-top: 2px;
-}
-
-/* Espacio uniforme para los nombres de los beneficios */
-.tarjeta-catalogo .nombre-beneficio {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 24px;
-    font-size: 14px;
-}
-
-/* Efecto al pasar el mouse sobre las tarjetas */
-.tarjeta:hover,
-.tarjeta-catalogo:hover {
-    background-color: var(--fondo-suave);
-    box-shadow: 0 6px 18px rgba(46, 100, 59, 0.14);
-    transform: translateY(-3px);
+.catalogo-afiliacion .tarjeta-catalogo small {
+    font-size: 11px;
+    line-height: 1.4;
+    font-weight: 500;
 }
 
 /* ========================================
-   5. ENLACES PARA VOLVER
+   8. BENEFICIOS
 ======================================== */
-
-/* Separación del enlace respecto del contenido */
-.enlace-volver {
-    margin-top: 32px;
-}
-
-/* Apariencia del enlace de regreso */
-.enlace-volver a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-
-    color: var(--verde);
-    font-weight: 600;
-    text-decoration: none;
-
-    padding: 8px 12px;
-    border-radius: 8px;
-
-    transition: background-color 0.2s ease;
-}
-
-.enlace-volver a:hover {
-    background-color: var(--fondo-suave);
-}
-
-/* ========================================
-   6. PIE DE PÁGINA
-======================================== */
-
-/* Apariencia general del pie de página */
-.pie-pagina {
-    margin-top: 24px;
-    color: var(--gris);
-    font-size: 13px;
-    text-align: center;
-}
-
-/* Separación del texto del pie de página */
-.pie-pagina p {
-    margin: 8px 0;
-}
-
-/* ========================================
-   7. DOCUMENTACIÓN Y FORMULARIOS
-======================================== */
-
-/* Ancho y separación de los bloques de trámite */
-.documentacion-tramite,
-.formulario-tramite {
-    max-width: 420px;
-    margin: 28px auto;
-}
-
-.documentacion-tramite {
-    padding: 20px;
-    background-color: var(--blanco);
-    border: 1px solid var(--borde-suave);
-    border-radius: 16px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-    text-align: left;
-}
-
-/* Título del recuadro de documentación */
-.documentacion-tramite h2 {
-    margin-top: 0;
-    color: var(--verde);
-    font-size: 18px;
-}
-
-/* Lista de documentación requerida */
-.documentacion-tramite ul {
-    margin-bottom: 0;
-    padding-left: 20px;
-    line-height: 1.6;
-}
 
 /* Recuadros de información de los beneficios */
 .pagina-beneficio .documentacion-tramite {
@@ -356,47 +550,36 @@ main p {
     margin-top: 8px;
 }
 
-/* Botón que permite abrir el formulario PDF */
-.formulario-tramite a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 10px;
-    padding: 12px 18px;
-    background-color: var(--verde);
-    color: var(--blanco);
-    border-radius: 10px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
-
-/* Cambio de color al pasar el mouse sobre el botón */
-.formulario-tramite a:hover {
-    background-color: #234d2e;
-}
-
-
-/* ========================================
-   8. AFILIACIÓN Y EMPADRONAMIENTO
-======================================== */
-
-.catalogo-afiliacion .tarjeta-catalogo {
-    min-height: 145px;
+/* Tarjetas con fotografías de Beneficios */
+.catalogo-beneficios .tarjeta-catalogo {
+    height: auto;
+    min-height: 0;
+    justify-content: flex-start;
+    padding: 10px;
     gap: 6px;
-    padding: 14px 8px;
 }
 
-.catalogo-afiliacion .tarjeta-catalogo small {
-    font-size: 11px;
-    line-height: 1.4;
-    font-weight: 500;
+/* Fotografías de Beneficios */
+.catalogo-beneficios .imagen-beneficio {
+    height: 115px;
+    flex-shrink: 0;
 }
 
 /* ========================================
-   9. GALERÍA DE TURISMO
+   9. TURISMO
 ======================================== */
+
+/* Presentación de las tarjetas de Turismo */
+.catalogo-turismo .tarjeta-catalogo {
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 2px;
+}
+
+/* Fotografías de los alojamientos turísticos */
+.catalogo-turismo .imagen-turismo {
+    height: 150px;
+}
 
 /* Galería con desplazamiento horizontal */
 .galeria-turismo {
@@ -420,15 +603,16 @@ main p {
     scroll-snap-align: start;
 }
 
-
 /* ========================================
-   10. BUSCADOR DE FORMULARIOS
+   10. FORMULARIOS
 ======================================== */
 
 /* Tarjetas del catálogo de Formularios */
 .catalogo-formularios .tarjeta-catalogo {
+    justify-content: flex-start;
     padding: 14px 10px;
     line-height: 1.4;
+    gap: 4px;
 }
 
 .buscador-formularios {
@@ -451,16 +635,23 @@ main p {
     margin: 24px auto;
 }
 
+.catalogo-formularios .tarjeta-catalogo>svg {
+    margin-top: 0;
+}
+
 /* ========================================
-   11. PORTADA DEL NEWSLETTER
+   11. NEWSLETTERS
 ======================================== */
 
 /* Recuadro de la última edición del newsletter */
 .newsletter-destacado {
+    max-width: 700px;
+    margin: 28px auto;
+    padding: 18px;
+
     background-color: var(--blanco);
     border: 1px solid var(--borde-suave);
     border-radius: 16px;
-    padding: 18px;
 
     box-shadow: 0 3px 12px rgba(46, 100, 59, 0.08);
 }
@@ -481,6 +672,34 @@ main p {
     border-radius: 10px;
 }
 
+/* Distribución horizontal de la última edición */
+.enlace-newsletter-destacado {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+
+    color: var(--verde);
+    text-decoration: none;
+}
+
+/* Acceso para leer la edición */
+.accion-newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.accion-newsletter svg {
+    width: 36px;
+    height: 36px;
+}
+
 /* Título de las ediciones anteriores */
 .titulo-ediciones {
     margin: 26px 0 0;
@@ -489,7 +708,6 @@ main p {
     font-weight: 600;
     text-align: center;
 }
-
 
 /* ========================================
    12. OFICINAS SINDICALES
@@ -533,8 +751,294 @@ main p {
 }
 
 /* ========================================
-   13. DISEÑO RESPONSIVE
+   13. DOCUMENTACIÓN Y PÁGINAS DE DETALLE
 ======================================== */
+
+/* Ancho y separación de los bloques de trámite */
+.documentacion-tramite,
+.formulario-tramite {
+    max-width: 420px;
+    margin: 28px auto;
+}
+
+.documentacion-tramite {
+    padding: 20px;
+    background-color: var(--blanco);
+    border: 1px solid var(--borde-suave);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+/* Título del recuadro de documentación */
+.documentacion-tramite h2 {
+    margin-top: 0;
+    color: var(--verde);
+    font-size: 18px;
+}
+
+/* Lista de documentación requerida */
+.documentacion-tramite ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+/* Botón que permite abrir el formulario PDF */
+.formulario-tramite a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 12px 18px;
+    background-color: var(--verde);
+    color: var(--blanco);
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+/* Cambio de color al pasar el mouse sobre el botón */
+.formulario-tramite a:hover {
+    background-color: #234d2e;
+}
+
+/* ========================================
+   14. ENLACES PARA VOLVER
+======================================== */
+
+/* Separación del enlace respecto del contenido */
+.enlace-volver {
+    margin-top: 32px;
+}
+
+/* Apariencia del enlace de regreso */
+.enlace-volver a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--verde);
+    font-weight: 600;
+    text-decoration: none;
+
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    transition: background-color 0.2s ease;
+}
+
+.enlace-volver a:hover {
+    background-color: var(--fondo-suave);
+}
+
+/* ========================================
+   15. PIE DE PÁGINA
+======================================== */
+
+/* Apariencia general del pie de página */
+.pie-pagina {
+    margin-top: 24px;
+    color: var(--gris);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Separación del texto del pie de página */
+.pie-pagina p {
+    margin: 8px 0;
+}
+
+/* ========================================
+   16. DISEÑO RESPONSIVE
+======================================== */
+
+/* Distribución de catálogos en computadora */
+@media (min-width: 601px) {
+
+    /* Beneficios: tres columnas */
+    .catalogo-beneficios {
+        max-width: 900px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    /* Servicio de sepelio ocupa toda la última fila */
+    .catalogo-beneficios .tarjeta-sepelio {
+        grid-column: 1 / -1;
+    }
+
+    /* Formularios: cuatro columnas */
+    .catalogo-formularios {
+        max-width: 900px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    /* Newsletters: cuatro columnas en computadora */
+    .catalogo-newsletters {
+        max-width: 900px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* Encabezado adaptado a celulares */
+@media (max-width: 600px) {
+
+    /* Dos columnas en la portada para celulares */
+    .secciones-principales {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Mostrar el salto de línea en celulares */
+    .salto-mobile {
+        display: initial;
+    }
+
+    /* Ocultar el menú en la portada del celular */
+    .pagina-inicio #menu-sitio {
+        display: none;
+    }
+
+    /* Ubicar la hamburguesa junto al título en páginas internas */
+    body:not(.pagina-inicio) #menu-sitio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        z-index: 30;
+    }
+
+    body:not(.pagina-inicio) .navegacion-sitio {
+        justify-content: flex-start;
+    }
+
+    /* Reservar espacio para la hamburguesa */
+    body:not(.pagina-inicio) {
+        position: relative;
+    }
+
+    body:not(.pagina-inicio) main>h1:first-child {
+        padding: 0 40px;
+    }
+
+    .pagina-inicio .encabezado {
+        padding: 5px 0 0 18px;
+        gap: 1px;
+    }
+
+    .pagina-inicio .encabezado img:first-child {
+        width: 95px;
+        height: 95px;
+    }
+
+    .pagina-inicio .encabezado img:last-child {
+        width: 105px;
+        height: 105px;
+    }
+
+    /* Navegación compacta en celulares */
+    .menu-escritorio {
+        display: none;
+    }
+
+    .menu-movil {
+        display: block;
+    }
+
+    .menu-movil summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        color: var(--verde);
+    }
+
+    /* Hamburguesa con líneas de largo decreciente */
+    .icono-hamburguesa {
+        display: block;
+        width: 25px;
+        height: 18px;
+        background:
+            linear-gradient(var(--verde), var(--verde)) left top / 25px 2px no-repeat,
+            linear-gradient(var(--verde), var(--verde)) left center / 18px 2px no-repeat,
+            linear-gradient(var(--verde), var(--verde)) left bottom / 11px 2px no-repeat;
+    }
+
+    .menu-movil .menu-opciones {
+        min-width: 235px;
+        max-width: calc(100vw - 32px);
+    }
+
+    /* Alineación de los nombres de Beneficios */
+    .catalogo-beneficios .nombre-beneficio {
+        min-height: 0;
+        font-size: 12px;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    /* Espaciado inferior de Afiliación en celulares */
+    .catalogo-afiliacion .tarjeta-catalogo {
+        padding-bottom: 20px;
+    }
+
+    /* Beneficios: tarjetas más compactas en celulares */
+    .catalogo-beneficios .tarjeta-catalogo {
+        padding: 8px;
+        gap: 4px;
+    }
+
+    /* Fotografías más bajas */
+    .catalogo-beneficios .imagen-beneficio {
+        height: 90px;
+        margin-bottom: 8px;
+    }
+
+    /* Íconos superpuestos */
+    .catalogo-beneficios .icono-superpuesto {
+        width: 46px;
+        height: 46px;
+        padding: 9px;
+        margin-top: -28px;
+        margin-bottom: 0px;
+    }
+
+    /* Fotografías de Turismo en celulares */
+    .catalogo-turismo .imagen-turismo {
+        height: 110px;
+    }
+
+    /* Formularios: íconos alineados y tarjetas compactas */
+    .catalogo-formularios .tarjeta-catalogo {
+        padding: 14px 8px;
+        gap: 8px;
+    }
+
+    .catalogo-formularios .tarjeta-catalogo>svg {
+        margin-bottom: 0;
+    }
+
+    /* Última edición de Newsletters en celulares */
+    .enlace-newsletter-destacado {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .accion-newsletter {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .accion-newsletter svg {
+        width: 22px;
+        height: 22px;
+    }
+}
 
 /* Celulares pequeños */
 @media (max-width: 360px) {
@@ -578,5 +1082,21 @@ main p {
     .tarjeta-catalogo small {
         font-size: 11px;
         line-height: 13px;
+    }
+
+    /* Logos adaptados a celulares pequeños */
+    .pagina-inicio .encabezado {
+        padding: 5px 0 0 12px;
+        gap: 2px;
+    }
+
+    .pagina-inicio .encabezado img:first-child {
+        width: 75px;
+        height: 75px;
+    }
+
+    .pagina-inicio .encabezado img:last-child {
+        width: 85px;
+        height: 85px;
     }
 }

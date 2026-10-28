@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1000 150"
+     preserveAspectRatio="none">
+
+    <!-- Franja verde clara superior -->
+    <path
+        d="M0 20 C170 20 320 90 530 110 C730 130 880 125 1000 75
+           L1000 150 L0 150 Z"
+        fill="#b7d7c2"/>
+
+    <!-- Franja verde intermedia -->
+    <path
+        d="M0 48 C170 38 320 108 530 126 C730 144 880 135 1000 95
+           L1000 150 L0 150 Z"
+        fill="#4a8f67"/>
+
+    <!-- Franja verde oscura -->
+    <path
+        d="M0 80 C170 62 320 125 530 140 C730 152 880 148 1000 115
+           L1000 150 L0 150 Z"
+        fill="#2e643b"/>
+
+    <!-- Recorte blanco inferior -->
+    <path
+        d="M0 115 C170 90 320 140 530 150 C730 160 880 160 1000 135
+           L1000 150 L0 150 Z"
+        fill="#ffffff"/>
+
+</svg>

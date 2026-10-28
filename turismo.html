@@ -13,18 +13,26 @@
 </head>
 
 <body>
+    <!-- Menú de navegación compartido -->
+    <div id="menu-sitio"></div>
 
     <main>
         <h1>Turismo</h1>
+        <p>Conocé los alojamientos disponibles para nuestras compañeras y compañeros.</p>
 
         <!-- Establecimientos turísticos -->
         <section class="catalogo-tarjetas catalogo-turismo">
 
+
             <!-- Colonia Evita -->
             <a href="colonia-evita.html" class="tarjeta-catalogo">
+                
+                <img src="assets/img/colonia-evita.png" alt="Entrada de la Colonia Evita" 
+                class="imagen-catalogo imagen-turismo">
+                
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-trees">
+                    class="lucide lucide-trees icono-superpuesto">
                     <path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z" />
                     <path d="M7 16v6" />
                     <path d="M13 19v3" />
@@ -37,9 +45,13 @@
 
             <!-- Hotel Juan Domingo Perón -->
             <a href="hotel-peron.html" class="tarjeta-catalogo">
+                
+                <img src="assets/img/hotel-peron.jpg" alt="Fachada del Hotel Juan D. Perón" 
+                class="imagen-catalogo imagen-turismo">
+                
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-parasol">
+                    class="lucide lucide-parasol icono-superpuesto">
                     <path d="M12.5 11.134 18.196 21" />
                     <path
                         d="M20.425 5.299a10 10 0 0 0-16.941 9.78c.183.563.843.774 1.355.478L20.16 6.711c.512-.296.66-.973.264-1.413" />
@@ -51,9 +63,13 @@
 
             <!-- Hotel Astor -->
             <a href="hotel-astor.html" class="tarjeta-catalogo tarjeta-ancha">
+                
+                <img src="assets/img/hotel-astor.jpeg" alt="Fachada del Hotel Astor" 
+                class="imagen-catalogo imagen-turismo">
+                
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-tree-palm">
+                    class="lucide lucide-tree-palm icono-superpuesto">
                     <path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4" />
                     <path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3" />
                     <path
@@ -63,6 +79,7 @@
                 <span class="nombre-beneficio">Hotel Astor</span>
                 <small>Asociación Mutual Unión Ferroviaria</small>
             </a>
+
 
         </section>
 
@@ -75,6 +92,8 @@
     <footer class="pie-pagina">
         <p>© Seccional Retiro</p>
     </footer>
+
+    <script src="menu.js" defer></script>
 
 </body>
 
