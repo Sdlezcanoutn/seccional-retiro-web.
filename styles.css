@@ -159,6 +159,58 @@ main p {
 }
 
 /* ========================================
+   ANIMACIÓN - MENÚ MÓVIL
+======================================== */
+
+@media (max-width: 600px) and (prefers-reduced-motion: no-preference) {
+
+    /* Aparición suave de las opciones */
+    .menu-movil[open] .menu-opciones {
+        animation: aparecer-menu 0.45s ease-out both;
+        transform-origin: top left;
+    }
+
+    @keyframes aparecer-menu {
+        from {
+            opacity: 0;
+            transform: translateY(-8px) scale(0.98);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Respuesta suave del ícono */
+    .menu-movil summary {
+        transition: transform 0.2s ease;
+    }
+
+    .menu-movil summary:active {
+        transform: scale(0.92);
+    }
+}
+
+/* ========================================
+   ANIMACIONES - INTERACCIÓN TÁCTIL
+======================================== */
+
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+
+    .tarjeta,
+    .tarjeta-catalogo {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .tarjeta:active,
+    .tarjeta-catalogo:active {
+        transform: scale(0.97);
+        box-shadow: 0 2px 8px rgba(46, 100, 59, 0.12);
+    }
+}
+
+/* ========================================
    4. ENCABEZADO Y LOGOS
 ======================================== */
 
@@ -196,16 +248,42 @@ main p {
     overflow: hidden;
 }
 
-/* Filtro suave sobre la fotografía */
+/* Filtro verde y brillo deslizante sobre la fotografía */
 .pagina-inicio .encabezado::before {
     content: "";
     position: absolute;
     inset: 0;
-
-    background-color: rgba(25, 65, 45, 0.12);
-
     z-index: 0;
     pointer-events: none;
+
+    background:
+        linear-gradient(110deg,
+            transparent 35%,
+            rgba(255, 255, 255, 0.22) 50%,
+            transparent 65%),
+        rgba(25, 65, 45, 0.12);
+
+    background-size: 250% 100%, 100% 100%;
+    background-position: 200% 0, 0 0;
+}
+
+/* Brillo que cruza de izquierda a derecha */
+@keyframes brillo-encabezado {
+    0% {
+        background-position: 200% 0, 0 0;
+    }
+
+    20%,
+    100% {
+        background-position: -200% 0, 0 0;
+    }
+}
+
+/* Repetir el brillo cada 16 segundos */
+@media (prefers-reduced-motion: no-preference) {
+    .pagina-inicio .encabezado::before {
+        animation: brillo-encabezado 16s ease-in-out infinite;
+    }
 }
 
 /* Ondas decorativas del encabezado */
@@ -301,7 +379,8 @@ main p {
 /* Tarjetas de beneficios y selección de trámites */
 .tarjeta-catalogo {
     flex-direction: column;
-    height: 110px;
+    min-height: 110px;
+    height: auto;
     font-size: 14px;
 }
 
@@ -361,9 +440,10 @@ main p {
 
 /* Nombre de la institución debajo de cada trámite */
 .tarjeta-catalogo small {
+    display: block;
     font-size: 12px;
-    line-height: 14px;
-    margin-top: 2px;
+    line-height: 1.4;
+    margin-top: 8px;
 }
 
 /* Espacio uniforme para los nombres de los beneficios */
@@ -373,6 +453,19 @@ main p {
     justify-content: center;
     min-height: 24px;
     font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Alineación uniforme de las tarjetas de Becas */
+.pagina-becas .tarjeta-catalogo {
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 16px 10px;
+}
+
+/* Íconos de Becas alineados */
+.pagina-becas .tarjeta-catalogo svg {
+    margin-bottom: 0;
 }
 
 /* Fotografías compartidas de los catálogos */
@@ -384,11 +477,26 @@ main p {
     margin-bottom: 10px;
 }
 
-/* Efecto al pasar el mouse sobre las tarjetas */
-.tarjeta:hover,
-.tarjeta-catalogo:hover {
-    box-shadow: 0 6px 18px rgba(46, 100, 59, 0.14);
-    transform: translateY(-3px);
+/* Movimiento suave de las fotografías */
+.imagen-catalogo {
+    transition: transform 0.5s ease;
+}
+
+/* Zoom al pasar el mouse */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .tarjeta-catalogo:hover .imagen-catalogo {
+        transform: scale(1.08);
+    }
+}
+
+/* Elevación suave al pasar el mouse */
+@media (hover: hover) {
+
+    .tarjeta:hover,
+    .tarjeta-catalogo:hover {
+        box-shadow: 0 10px 24px rgba(46, 100, 59, 0.18);
+        transform: translateY(-5px);
+    }
 }
 
 /* Efecto de fondo para las tarjetas de los catálogos */
@@ -402,11 +510,16 @@ main p {
 
 /* Espaciado del título y subtítulo de la portada */
 .pagina-inicio h1 {
-    margin: 18px 0 4px;
+    margin: 15px 0 5px;
 }
 
+/* Subtítulo de la portada */
 .pagina-inicio main>p {
     margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.1px;
 }
 
 /* Distribución de las tarjetas de la página principal */
@@ -430,6 +543,10 @@ main p {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    box-shadow:
+        inset 0 -45px 45px -25px rgba(0, 0, 0, 0.28),
+        0 5px 16px rgba(46, 100, 59, 0.12);
 }
 
 /* Beneficios */
@@ -505,6 +622,55 @@ main p {
 }
 
 /* ========================================
+   ANIMACIÓN DE LAS TARJETAS DEL INICIO
+======================================== */
+
+/* Aparición suave desde abajo */
+@keyframes aparecer-tarjeta {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación escalonada de las tarjetas */
+@media (prefers-reduced-motion: no-preference) {
+
+    .pagina-inicio .secciones-principales .tarjeta {
+        animation: aparecer-tarjeta 0.7s ease-out both;
+    }
+
+    .pagina-inicio .secciones-principales .tarjeta:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .pagina-inicio .secciones-principales .tarjeta:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .pagina-inicio .secciones-principales .tarjeta:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .pagina-inicio .secciones-principales .tarjeta:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .pagina-inicio .secciones-principales .tarjeta:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .pagina-inicio .secciones-principales .tarjeta:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+}
+
+/* ========================================
    7. AFILIACIÓN Y EMPADRONAMIENTO
 ======================================== */
 
@@ -514,10 +680,16 @@ main p {
     flex-shrink: 0;
 }
 
-/* Ancho del catálogo de Afiliación y Empadronamiento */
+/* Ancho y separación del catálogo de Afiliación */
 .catalogo-afiliacion {
     max-width: 700px;
     gap: 18px;
+    margin-top: 20px;
+}
+
+/* Separación del enlace de regreso en Afiliación */
+.pagina-afiliacion .enlace-volver {
+    margin-top: 20px;
 }
 
 /* Tarjetas de Afiliación y Empadronamiento */
@@ -802,9 +974,22 @@ main p {
     transition: background-color 0.2s ease;
 }
 
-/* Cambio de color al pasar el mouse sobre el botón */
-.formulario-tramite a:hover {
-    background-color: var(--verde-hover);
+/* ANIMACIÓN TÁCTIL DE BOTONES Y ENLACES */
+
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+
+    .formulario-tramite a,
+    .enlace-volver a {
+        -webkit-tap-highlight-color: transparent;
+        transition:
+            transform 0.18s ease,
+            background-color 0.2s ease;
+    }
+
+    .formulario-tramite a:active,
+    .enlace-volver a:active {
+        transform: scale(0.95);
+    }
 }
 
 /* ========================================
@@ -903,11 +1088,11 @@ main p {
         display: none;
     }
 
-    /* Ubicar la hamburguesa junto al título en páginas internas */
+    /* Menú hamburguesa en las páginas interiores */
     body:not(.pagina-inicio) #menu-sitio {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 24px;
+        left: 8px;
         margin: 0;
         z-index: 30;
     }
@@ -921,8 +1106,12 @@ main p {
         position: relative;
     }
 
+    /* Títulos de las páginas interiores */
     body:not(.pagina-inicio) main>h1:first-child {
-        padding: 0 40px;
+        padding: 0 16px;
+        overflow-wrap: break-word;
+        font-size: clamp(24px, 7vw, 30px);
+        line-height: 1.25;
     }
 
     .pagina-inicio .encabezado {
@@ -1098,5 +1287,25 @@ main p {
     .pagina-inicio .encabezado img:last-child {
         width: 85px;
         height: 85px;
+    }
+}
+
+/* ========================================
+   17. ANIMACIONES AL HACER SCROLL
+======================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+
+    .animacion-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.65s ease,
+            transform 0.65s ease;
+    }
+
+    .animacion-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
