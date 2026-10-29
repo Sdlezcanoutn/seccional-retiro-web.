@@ -809,7 +809,17 @@ main p {
     border-radius: 14px;
     background-color: var(--blanco);
     font: inherit;
-    outline-color: var(--verde);
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Resaltar el buscador al seleccionarlo */
+.buscador-formularios input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px rgba(46, 100, 59, 0.12);
 }
 
 .sin-resultados {
@@ -993,7 +1003,66 @@ main p {
 }
 
 /* ========================================
-   14. ENLACES PARA VOLVER
+   14. BOTÓN VOLVER ARRIBA
+======================================== */
+
+/* Botón flotante de regreso al inicio */
+.boton-volver-arriba {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: var(--verde);
+    color: var(--blanco);
+    font-size: 25px;
+    font-weight: 500;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+/* Mostrar el botón al desplazarse */
+.boton-volver-arriba.visible {
+    opacity: 0.55;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Resaltar el botón al pasar el mouse */
+.boton-volver-arriba:hover {
+    background-color: var(--verde-hover);
+}
+
+/* Respetar la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .boton-volver-arriba {
+        transition: none;
+    }
+}
+
+/* ========================================
+   15. ENLACES PARA VOLVER
 ======================================== */
 
 /* Separación del enlace respecto del contenido */
@@ -1022,7 +1091,7 @@ main p {
 }
 
 /* ========================================
-   15. PIE DE PÁGINA
+   16. PIE DE PÁGINA
 ======================================== */
 
 /* Apariencia general del pie de página */
@@ -1039,7 +1108,7 @@ main p {
 }
 
 /* ========================================
-   16. DISEÑO RESPONSIVE
+   17. DISEÑO RESPONSIVE
 ======================================== */
 
 /* Distribución de catálogos en computadora */
@@ -1301,7 +1370,7 @@ main p {
 }
 
 /* ========================================
-   17. ANIMACIONES AL HACER SCROLL
+   18. ANIMACIONES AL HACER SCROLL
 ======================================== */
 
 @media (prefers-reduced-motion: no-preference) {

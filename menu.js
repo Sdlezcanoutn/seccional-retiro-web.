@@ -94,4 +94,37 @@ document.addEventListener("DOMContentLoaded", () => {
             window.addEventListener("resize", actualizarPosicion);
         }
     }
+
+    // Botón flotante para volver al inicio de la página
+    const botonArriba = document.createElement("button");
+    botonArriba.className = "boton-volver-arriba";
+    botonArriba.type = "button";
+    botonArriba.setAttribute("aria-label", "Volver arriba");
+    botonArriba.setAttribute("title", "Volver arriba");
+    botonArriba.innerHTML = "&#8593;";
+
+    document.body.appendChild(botonArriba);
+
+    // Mostrar el botón cuando se baja por la página
+    const actualizarBotonArriba = () => {
+        botonArriba.classList.toggle(
+            "visible",
+            window.scrollY > 300
+        );
+    };
+
+    window.addEventListener("scroll", actualizarBotonArriba, { passive: true });
+    actualizarBotonArriba();
+
+    // Regresar suavemente al principio
+    botonArriba.addEventListener("click", () => {
+        const movimientoReducido = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        window.scrollTo({
+            top: 0,
+            behavior: movimientoReducido ? "auto" : "smooth"
+        });
+    });
 });
