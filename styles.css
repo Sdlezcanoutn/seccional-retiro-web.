@@ -1290,6 +1290,16 @@ main p {
     }
 }
 
+/* Contenido ampliado en computadora */
+@media (min-width: 901px) {
+
+    .documentacion-tramite,
+    .formulario-tramite {
+        max-width: 700px;
+    }
+
+}
+
 /* ========================================
    17. ANIMACIONES AL HACER SCROLL
 ======================================== */
